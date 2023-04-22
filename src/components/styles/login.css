@@ -1,0 +1,52 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+
+
+html, body {
+    height: 100%;
+  }
+
+
+body {
+    font-size: 14px;
+  }
+
+.login-page{
+    background-image: url(../../assets/fondo_login.jpg);
+    background-size: cover;
+    height: 100vh;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+@media (max-width: 760px) {
+    .login-page {
+      background-position: right center;
+    }
+  }
+.form-container{
+    position: relative;
+    margin: 0 auto;
+    max-width: 760px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 2px;
+    width: 50vh;
+    height: 100%;
+    float: right;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 0;
+    justify-content: center!important;
+    margin-right: 10%;
+}
+
+#logo-login{
+    background-size: contain;
+    height: 60px;
+}
