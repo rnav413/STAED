@@ -1,42 +1,56 @@
 import React from 'react';
-import { Link} from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import "./styles/login.css"
 import logo from "../assets/logo_login.png"
 import { useState } from 'react';
-
-//, useHistory 
+import axios from 'axios';
 
 function LoginPage() {
  
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-
+  const [usuario, setUsername] = useState('');
+  const [contraseña, setPassword] = useState('');
+  const [error, setError] = useState('');
+  
+  const navigate = useNavigate();
  // const history = useHistory();
 
-  const handleLogin = (e) => {
-    e.preventDefault();
+  const handleLogin = async (e) => {
 
-    // logica del login
+    e.preventDefault();
+    setError('');
+
+    try {
+
+      const response = await axios.post('http://localhost:3000/login', { usuario, contraseña });
+      console.log(response.data);
+      navigate('/main')
     
-   // history.push('/mainpage');
+    } catch (error) {
+      if (error.response && error.response.data && error.response.data.error) {
+        setError(error.response.data.error);
+      } else {
+        setError('Error en el servidor');
+      }
+    }
   };
    //<form onSubmit={handleLogin}>
   return (
     <div className="login-page">
         <div className='form-container'>
             <div className='inner-block'>
-                <img src={logo} id='logo-login'/>
+                <img src={logo} id='logo-login' alt='logo'/>
 
-                <form>
+                <form id='login-input' onSubmit={handleLogin}>
                     <div style={{ display: "flex", flexDirection: "column" }}>
-                    <input type="text" name="username" placeholder='Usuario' />
+                    <input type="text" id="username" placeholder='Usuario'  onChange={(e) => setUsername(e.target.value)}/>
                     <br />
-                    <input type="password" name="password" placeholder='Contraseña' />
+                    <input type="password" id="password" placeholder='Contraseña' onChange={(e) => setPassword(e.target.value)}/>
 
                     </div>
                     <p />
-                    <Link to = "/main"><button className='boton-inicio' type="submit">Sign in</button></Link>
+                    <button id='boton-inicio' type="submit">Log in</button>
+                    {error && <p>{error}</p>}
                 </form>
             </div>
         </div>

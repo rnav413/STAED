@@ -44,9 +44,38 @@ body {
     margin-top: 0;
     justify-content: center!important;
     margin-right: 10%;
+    
 }
 
 #logo-login{
     background-size: contain;
     height: 60px;
+}
+
+#boton-inicio{
+  background: #9e0b0f;
+  color: white;
+  border: 1px solid #9e0b0f;
+  display: block;
+  width: 100%;
+  border-radius: 1.25rem;
+  line-height: 1.5;
+  font-weight: 700;
+  padding: 5px 10px;
+  margin-top: 50px;
+  font-family: inherit;
+}
+
+#login-input{
+  margin-top: 40px;
+}
+
+#username, #password{
+
+  font-size: 16px;
+  height: calc(1.5em + 0.75rem + 2px);
+  background-color: rgb(232, 240, 254);
+  border-radius: 20px;
+  padding-left: 35px;
+  color: fieldtext !important;
 }
