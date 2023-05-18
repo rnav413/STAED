@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import "./styles/main.css";
+import { UserContext } from '../UserContext';
 
 
 function Main() {
+  const { userData } = useContext(UserContext);
+  const materias = userData.materias
+
   return (
     <div className="main-page">
       <nav className='upper-nav'>
@@ -16,10 +20,11 @@ function Main() {
         <div className='cursos-content'>
     	  <ul className='lista-cursos'> 
           <li className='r0'>
-            <Link to='/curso_1' title='Ejemplo curso 1'>
-              <i className='icono-cursos' />
-              "Ingenieria de Software 2"
-            </Link>
+          <ul>
+          {materias.map(materia => (
+            <li key={materia.nombre}>{materia.nombre}</li>
+          ))}
+        </ul>
           </li> 
         
         

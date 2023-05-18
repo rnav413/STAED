@@ -2,8 +2,9 @@ import React from 'react';
 import { useNavigate} from 'react-router-dom';
 import "./styles/login.css"
 import logo from "../assets/logo_login.png"
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import axios from 'axios';
+import { UserContext } from '../UserContext';
 
 function LoginPage() {
  
@@ -11,7 +12,9 @@ function LoginPage() {
   const [usuario, setUsername] = useState('');
   const [contraseña, setPassword] = useState('');
   const [error, setError] = useState('');
-  
+
+  const { setUserData } = useContext(UserContext);
+
   const navigate = useNavigate();
  // const history = useHistory();
 
@@ -24,6 +27,7 @@ function LoginPage() {
 
       const response = await axios.post('http://localhost:3000/login', { usuario, contraseña });
       console.log(response.data);
+      setUserData(response.data);
       navigate('/main')
     
     } catch (error) {
